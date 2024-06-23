@@ -4,7 +4,7 @@ function Main (){
     return(
         <>
             <div className={style.container}>
-
+                
             </div>
         </>
     )

@@ -9,3 +9,17 @@
     transition: .2s linear;
     box-shadow:-6px 6px 0 rgb(110, 25, 103) ;
   }
+
+  @mixin btn{
+    background-color: transparent;
+    width: 5rem;
+    height: 2rem;
+    border: #2f2c2dd0 1px solid;
+    border-radius: 10px;
+    font-family: 'Livvic', sans-serif;
+    @include font(ligth,medium,$primary-color);
+    transition: .2s linear;
+    background: #946985;
+ 
+ }
+ 

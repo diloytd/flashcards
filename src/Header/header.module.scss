@@ -29,21 +29,10 @@
 }
 
 .btn{
-   background-color: transparent;
-   width: 5rem;
-   height: 2rem;
-   border: #2f2c2dd0 1px solid;
-   border-radius: 10px;
-   font-family: 'Livvic', sans-serif;
-   @include font(ligth,medium,$primary-color);
-   transition: .2s linear;
-   background: #946985;
-
+  @include btn
 }
 
-// .btn:hover {
-//    box-shadow: 0 0 0 2px rgb(110, 25, 103), 0 0 0 4px #56085d;
-// }
+
 
 .btn:hover{
   @include hover(rgb(110, 25, 103),#56085d);

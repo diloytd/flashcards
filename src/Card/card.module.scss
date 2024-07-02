@@ -1,0 +1,26 @@
+@import '../Date/colors.scss';
+@import '../Date/mixins.scss';
+.card {
+    padding: 20px;
+    margin: 0 auto;
+    height: 250px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid rgb(143, 34, 173);
+    background-color:hsla(276, 25%, 64%, 0.345);
+    @include font(ligth,20px,rgb(43, 42, 42))
+}
+
+.transcription{
+    color:rgb(111, 109, 111)
+}
+
+.btn{
+  @include btn();
+  margin-top:60px
+ }
+ 

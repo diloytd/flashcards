@@ -1,39 +1,29 @@
 import style from "./card.module.scss";
-import { useState, useEffect } from "react";
-import Button from "./button";
+import classNames from "classnames";
 
-function Card ({date}) {
-    const [click, setClick] = useState(true);
-    const [show, setShow] = useState(true);
-    
-    let random = Math.round(Math.random() * date.length);
-    let meaning = date[random] ;
-    
+function Card({ id, transcription, english, russian, click, setClick }) {
+    let handleClick = () => {
+        setClick(false);
+    };
 
-    
-let handleClick = () => {
-    setClick(false);
-  } 
-
-
-return(
+    return (
         <>
-       <div key={meaning.id}className={style.card}>
-            <p className={style.word}>{meaning.english}</p>
-            <p className={style.transcription}>{meaning.transcription}</p>
-            {/* <button onClick={handleClick} style={{display : "block"}}>translate</button> */}
-     {click 
-     ? <button className={style.btn} onClick={handleClick}>translate</button> : <p>{meaning.russian}</p>
-    }
-   
-      
-    </div>
-       
-    </>
-    )
-   
+           <div key={id} className={classNames(style.card)}>
+                        <p className={style.word}>{english}</p>
+                        <p className={style.transcription}>{transcription}</p>
+                        {click ? (
+                            <button
+                                className={classNames(style.btn)}
+                                onClick={handleClick}
+                            >
+                                translate
+                            </button>
+                        ) : (
+                            <p className={classNames(style.p)}>{russian}</p>
+                        )}
+                    </div>
+        </>
+    );
 }
-export default Card
+export default Card;
 
-//? <p>{meaning.russian}</p> : <Button/>
-//<button onClick={handleClick} style={{display : {handleClick}}}/> 

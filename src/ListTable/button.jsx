@@ -2,10 +2,10 @@ import style from './table.module.scss'
 import {urlImg, urlImg2, urlImg3} from '../assets/icons.jsx';
 export {ButtonOk, ButtonDelete, ButtonEdit}
 
-function ButtonOk(){
+function ButtonOk({onClick}){
     return (
         <>
-           <button className="buttonOk">
+           <button className="buttonOk"  onClick={onClick}>
                 <span>
                     <img src={urlImg} alt="#" width={30} height={20}></img>
                 </span>
@@ -16,10 +16,10 @@ function ButtonOk(){
 
 
 
-function ButtonDelete(){
+function ButtonDelete({onClick}){
     return (
         <>
-            <button className="buttonDel">
+            <button className="buttonDel"  onClick={onClick}>
                 <span>
                     <img src={urlImg2} alt='Delete Word' width={30} height={20}></img>
                 </span>
@@ -29,10 +29,10 @@ function ButtonDelete(){
 }
 
 
-function ButtonEdit(){
+function ButtonEdit({onClick}){
     return (
         <>
-            <button className="buttonDel">
+            <button className="buttonDel" onClick={onClick}>
                 <span>
                     <img src={urlImg3} alt='Edit Word' width={30} height={20}></img>
                 </span>

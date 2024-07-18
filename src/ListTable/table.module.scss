@@ -1,9 +1,19 @@
+@import '../Date/mixins.scss';
+
+.container {
+    @include container;
+    
+}
+
 .table{
     max-width: 900px;
     width: 90vW;
     margin: 0 auto; 
+    //  background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+    
     /* Обратить внимание в будущем на этот параметр!!!!!!!!!!!!!!*/
 }
+
 
 
 th {
@@ -52,12 +62,8 @@ th {
  margin-top: 5px;
 }
 
-.row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 
-    &input{
-        height: 30px;
-    }
+
+.input{
+    height: 30px;
 }

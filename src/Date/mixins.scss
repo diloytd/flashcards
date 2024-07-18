@@ -23,3 +23,7 @@
  
  }
  
+ @mixin container {
+    width: 100vw;
+    background: -webkit-linear-gradient(180deg, #a0778f,#bd8fc1,#ecd8ee);                         background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+} 

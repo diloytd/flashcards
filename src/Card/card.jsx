@@ -1,10 +1,14 @@
 import style from "./card.module.scss";
 import classNames from "classnames";
-
-function Card({ id, transcription, english, russian, click, setClick }) {
+import { useRef,useEffect } from "react";
+function Card({ id, transcription, english, russian, click, setClick, showLearnWord, focusRef }) {
+    
     let handleClick = () => {
         setClick(false);
+        showLearnWord();
     };
+    
+   
 
     return (
         <>
@@ -15,10 +19,11 @@ function Card({ id, transcription, english, russian, click, setClick }) {
                             <button
                                 className={classNames(style.btn)}
                                 onClick={handleClick}
+                                ref={focusRef}
                             >
                                 translate
                             </button>
-                        ) : (
+                        ) : (   
                             <p className={classNames(style.p)}>{russian}</p>
                         )}
                     </div>

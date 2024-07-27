@@ -1,7 +1,7 @@
 import "./App.scss";
 import { useState, useEffect } from "react";
 import Header from "./Header/header.jsx";
-import Main from "./Main/main.jsx";
+import Main from "./Main/mainpage.jsx";
 import Table from "./ListTable/table.jsx";
 import date from "./Date/date.json";
 import Card from "./Card/card.jsx";
@@ -27,6 +27,7 @@ function App() {
                             />
                         }
                     />
+                    
                     <Route path="/table" element={<Table date={date} />} />
                 </Routes>
             </Router>

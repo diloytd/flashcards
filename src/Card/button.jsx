@@ -7,16 +7,21 @@ import { useState, useRef, useEffect } from "react";
 export default function ChangeCard ({ date, currentState, setCurrentState}) {
     const [count, setCount] = useState(0);
     const [click, setClick] = useState(true);
+    const [learnWord, setLearnWord] = useState(0)
     const btn = useRef();
-    console.log(Date.length - 1)
+    const focusRef = useRef()
+    useEffect(() => {
+        focusRef.current.focus()
+   },[count])
+    
     const nextSlide = () => {
         if(count >= Date.length - 1){
             setCount(0);
              btn.current.disabled = true;
-            
-}
+        }
        setCount(count + 1);
         setClick(true);
+        
     };
 
     const prevSlide = () => {
@@ -28,6 +33,10 @@ export default function ChangeCard ({ date, currentState, setCurrentState}) {
         setClick(true);
     };
 
+    const showLearnWord = () => {
+        setLearnWord(learnWord + 1)
+    }
+
     return (
         <>
             <div className={style.container}>
@@ -36,11 +45,16 @@ export default function ChangeCard ({ date, currentState, setCurrentState}) {
                         className={classNames(style.arrow, style.arrow_left)}
                         onClick={prevSlide}
                     />
+                    <div className={style.learnWord}>
                         <Card
                         {...currentState[count]}
                         click={click}
                         setClick={setClick}
+                        showLearnWord={showLearnWord}
+                        focusRef={focusRef}
                     />
+                    <p>I know {learnWord} words</p>
+                    </div>
                     <BsArrowRightCircleFill
                         className={classNames(style.arrow, style.arrow_rigth)}
                         onClick={nextSlide}

@@ -12,23 +12,46 @@ export default function Row({
     removeItem,
 }) {
     //
-    const [showComponent, setShowComponent] = useState(true);
-    const [inputEnglish, setInputEnglish] = useState(english);
-    const [inputTranscription, setInputTranscription] = useState(transcription);
-    const [inputRussian, setInputRussian] = useState(russian);
+    const [showComponent, setShowComponent] = useState({
+        english: english,
+        transcription: transcription,
+        russian: russian
+    });
+    // const [inputEnglish, setInputEnglish] = useState(english);
+    // const [inputTranscription, setInputTranscription] = useState(transcription);
+    // const [inputRussian, setInputRussian] = useState(russian);
+    const [inputValue, setInputValue] = useState({
+        english: '',
+        transcription: '',
+        russian: ''
+    })
     const handleEdit = () => {
         setShowComponent(false);
+       
     };
     const handleOk = () => {
         setShowComponent(true);
+        
     };
 
-    useEffect(() => {
-        setShowComponent;
-        setInputEnglish(english);
-        setInputTranscription(transcription);
-        setInputRussian(russian);
-    }, [english, transcription, russian]);
+    const handleChangeValue = (e) => {
+        const value = e.target.value
+        const name = e.target.name
+        setInputValue({
+            ...inputValue,
+            [name]: value
+        })
+        
+    }
+console.log(inputValue.english)
+console.log(showComponent.english)
+useEffect(() => {
+    setInputValue({
+        english: english,
+        transcription: transcription,
+        russian: russian
+    });
+}, [english, transcription, russian]);
 
     return (
         <>
@@ -36,9 +59,9 @@ export default function Row({
                 <>
                     <tr key={index}>
                         <td>{index + 1}</td>
-                        <td>{inputEnglish}</td>
-                        <td>{inputTranscription}</td>
-                        <td>{inputRussian}</td>
+                        <td>{english}</td>
+                        <td>{transcription}</td>
+                        <td>{russian}</td>
                         <ButtonDelete onClick={() => removeItem(index)} />
                         <ButtonEdit onClick={handleEdit} />
                         <ButtonOk onClick={handleOk} />
@@ -50,24 +73,25 @@ export default function Row({
                     <td>
                         <input
                             className={style.input}
-                            value={inputEnglish}
-                            onChange={(e) => setInputEnglish(e.target.value)}
+                            value={inputValue.english}
+                            name="english"
+                            onChange={handleChangeValue}
                         />
                     </td>
                     <td>
                         <input
                             className={style.input}
-                            value={inputTranscription}
-                            onChange={(e) =>
-                                setInputTranscription(e.target.value)
-                            }
+                            value={inputValue.transcription}
+                            name="transcription"
+                            onChange={handleChangeValue}
                         ></input>
                     </td>
                     <td>
                         <input
                             className={style.input}
-                            value={inputRussian}
-                            onChange={(e) => setInputRussian(e.target.value)}
+                            value={inputValue.russian}
+                            name="russian"
+                            onChange={handleChangeValue}
                         ></input>
                     </td>
                     <ButtonDelete onClick={() => removeItem(index)} />
@@ -78,3 +102,8 @@ export default function Row({
         </>
     );
 }
+
+
+// setShowComponent({
+  //  english: inputValue.english
+//})

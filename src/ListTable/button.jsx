@@ -1,19 +1,21 @@
 import style from './table.module.scss'
 import {urlImg, urlImg2, urlImg3} from '../assets/icons.jsx';
 export {ButtonOk, ButtonDelete, ButtonEdit}
+import { useRef, forwardRef } from 'react';
 
-function ButtonOk({onClick}){
+
+function ButtonOk ({onClick}) {
     return (
         <>
-           <button className="buttonOk"  onClick={onClick}>
-                <span>
-                    <img src={urlImg} alt="#" width={30} height={20}></img>
-                </span>
-            </button>
+        <button className="buttonOk" onClick={onClick}>
+            <span>
+                <img src={urlImg} alt="button icon" width={30} height={20} />
+            </span>
+        </button>
         </>
-    )
-}
-
+    );
+};
+ 
 
 
 function ButtonDelete({onClick}){

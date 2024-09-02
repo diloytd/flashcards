@@ -1,0 +1,29 @@
+@mixin font($weight, $size, $color) {
+    font-weight: $weight;
+    font-size: $size;
+    color: $color;
+  }
+
+  @mixin hover($color1, $color2){
+    // box-shadow: 0 0 0 2px rgb(110, 25, 103), 0 0 0 4px #56085d;
+    transition: .2s linear;
+    box-shadow:-6px 6px 0 rgb(110, 25, 103) ;
+  }
+
+  @mixin btn{
+    background-color: transparent;
+    width: 5rem;
+    height: 2rem;
+    border: #2f2c2dd0 1px solid;
+    border-radius: 10px;
+    font-family: 'Livvic', sans-serif;
+    @include font(ligth,medium,$primary-color);
+    transition: .2s linear;
+    background: #946985;
+ 
+ }
+ 
+ @mixin container {
+    width: 100vw;
+    background: -webkit-linear-gradient(180deg, #a0778f,#bd8fc1,#ecd8ee);                         background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+} 

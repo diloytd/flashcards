@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Livvic:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,900,900italic);
+@import '../Date/colors.scss';
+@import '../Date/mixins.scss';
+
+@font-face {
+   font-family: 'Livvic';
+   src: local("Livvic"),
+    url('./Date/Fonts/Livvic-Medium.ttf') format('truetype');;
+}
+.header{
+   background-image:url('../assets/Image/back_two.png') ;
+   background-size:100% 100%;
+    width: 100vw;
+    height: 200px;
+    padding: 2rem;
+    font-family: 'Livvic', sans-serif;
+    @include font(ligth,large,$primary-color);
+   
+
+    a {
+      text-decoration: none;
+      color: $primary-color;
+
+      &:hover{
+        @include hover(rgb(110, 25, 103),#56085d);
+      }
+    }
+    
+}
+
+.btn{
+  @include btn
+}
+
+
+
+.btn:hover{
+  @include hover(rgb(110, 25, 103),#56085d);
+  cursor: pointer;
+}
+
+ .container{
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   column-gap: 40px;
+}
+
+
+
+ .nav{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+

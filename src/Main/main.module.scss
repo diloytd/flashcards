@@ -1,0 +1,17 @@
+
+.container{
+    height: 100vh;
+    width: 100vw;
+    background: -webkit-linear-gradient(180deg, #a0778f,#bd8fc1,#ecd8ee);                         background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+}
+
+
+.animate{
+    font-size: 63px;
+    color: rgb(199, 177, 201);
+    text-align: center;
+    font-style: italic;
+    &:first-child {
+        font-style: italic;
+    }
+}

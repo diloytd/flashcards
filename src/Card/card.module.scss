@@ -1,0 +1,74 @@
+@import '../Date/colors.scss';
+@import '../Date/mixins.scss';
+
+.container { 
+   background: -webkit-linear-gradient(180deg, #a0778f,#bd8fc1,#ecd8ee);                         background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+  height: 100vh;
+   
+}
+
+
+.card {
+    padding: 20px;
+    margin: 0 auto;
+    height: 250px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid rgb(143, 34, 173);
+    background-color:hsl(307, 30%, 89%);
+    @include font(ligth,20px,rgb(43, 42, 42))
+}
+
+.transcription{
+    color:rgb(111, 109, 111)
+}
+
+.btn{
+  @include btn();
+  margin-top:60px
+}
+
+ .btn:focus {
+  outline: 2px solid rgb(103, 23, 97); // Пример стиля для состояния фокуса
+  outline-offset: 4px; // Пример смещения рамки фокуса
+}
+ 
+ .carusel {
+   display: flex;
+   flex-direction: row;
+   margin: 0 auto;
+   justify-content: space-between;
+   width: 600px;
+    height: 400px;
+    
+}
+
+
+
+ .arrow {
+   margin-top: 8rem;
+    width: 2rem;
+    height: 2rem;
+color: rgb(6, 6, 6);
+cursor: pointer;
+ }
+
+
+
+ .learnWord{
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+
+  p{
+    text-align: center;
+  }
+ }
+
+ .cardDisActive{
+  display: none;
+ }

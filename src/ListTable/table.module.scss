@@ -1,0 +1,73 @@
+@import '../Date/mixins.scss';
+
+.container {
+    @include container;
+    
+}
+
+.table{
+    max-width: 900px;
+    width: 90vW;
+    margin: 0 auto; 
+  // background: linear-gradient(180deg, #4b1a4c,#bd8fc1,#ecd8ee);
+    
+    /* Обратить внимание в будущем на этот параметр!!!!!!!!!!!!!!*/
+}
+
+
+
+th {
+    text-align: start;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+
+// tr:nth-child(even){
+//     background-color: rgba(126, 112, 137, 0.651);
+// }
+
+
+.table tbody td {
+	text-align: left;
+	border-left: 1px solid #958c9b;
+	border-right: 1px solid #ddd;
+	padding: 10px 15px;
+	font-size: 14px;
+	vertical-align: top;
+    font-size: medium;
+}
+
+
+.table thead tr th:first-child, .table tbody tr td:first-child {
+	border-left: none;
+}
+
+
+.table thead tr th:last-child, .table tbody tr td:last-child {
+	border-right: none;
+}
+
+
+.table tbody tr:nth-child(even){
+	background: #dbc9de;
+}
+
+
+.buttons {
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+ margin-top: 5px;
+}
+
+
+
+.input{
+    height: 30px;
+}
+
+.block{
+    border: red;
+}

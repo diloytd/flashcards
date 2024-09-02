@@ -1,0 +1,194 @@
+[33mcommit 58cdc0be924a598499d4545a8cddad13f07d30d4[m
+Author: diloytd <khadieva.diana@yandex.ru>
+Date:   Tue Aug 20 22:25:52 2024 +0300
+
+    rework words
+
+[1mdiff --git a/src/App.jsx b/src/App.jsx[m
+[1mindex b91ea01..a3e6989 100644[m
+[1m--- a/src/App.jsx[m
+[1m+++ b/src/App.jsx[m
+[36m@@ -8,19 +8,21 @@[m [mimport date from "./Date/date.json";[m
+ import Card from "./Card/Card.jsx";[m
+ import ChangeCard from "./Card/Button.jsx";[m
+ import Context from "./Context.js";[m
+[32m+[m
+ import { useFetch } from "./Hooks/Fetch.js";[m
+ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";[m
+ [m
+ function App() {[m
+ [m
+     const [show, setShow] = useState(true);[m
+[31m-    const [getDates, isLoading, error, currentState, setCurrentState ] =[m
+[31m-        useFetch("http://itgirlschool.justmakeit.ru/api/words");[m
+[32m+[m[32m    const [currentState, setCurrentState, getDates, isLoading, error,removeItem, postNewWord, newWord, setNewWord, editWord,changeWord, setChangeWord] =[m
+[32m+[m[32m        useFetch("/api/words");[m
+[32m+[m
+ [m
+     useEffect(() => {[m
+         getDates(); [m
+     }, []);[m
+[31m-[m
+[32m+[m[41m  [m
+     return ([m
+         <>[m
+             <Context.Provider[m
+[36m@@ -31,6 +33,11 @@[m [mfunction App() {[m
+                     setShow,[m
+                     isLoading,[m
+                     getDates,[m
+[32m+[m[32m                    removeItem,[m
+[32m+[m[32m                    postNewWord,[m
+[32m+[m[32m                    newWord,[m[41m [m
+[32m+[m[32m                    setNewWord,[m
+[32m+[m[32m                    editWord,changeWord, setChangeWord[m
+                 ]}[m
+             >[m
+                 <Router>[m
+[1mdiff --git a/src/Hooks/Fetch.js b/src/Hooks/Fetch.js[m
+[1mindex 70264dc..fd9a2fd 100644[m
+[1m--- a/src/Hooks/Fetch.js[m
+[1m+++ b/src/Hooks/Fetch.js[m
+[36m@@ -1,10 +1,41 @@[m
+[31m-import { useState } from "react";[m
+[32m+[m[32mimport { useState, useContext } from "react";[m
+[32m+[m[32mimport { v4 as uuidv4 } from "uuid";[m
+[32m+[m[32mimport App from "../App";[m
+[32m+[m[32mimport Context from "../Context.js";[m
+[32m+[m
+ [m
+ export function useFetch(adres = String, ...arg) {[m
+[32m+[m[32m    const [currentState, setCurrentState] = useState([{[m
+[32m+[m[32m        english: "",[m
+[32m+[m[32m        transcription: "",[m
+[32m+[m[32m        russian: "",[m
+[32m+[m[32m        id: uuidv4(),[m
+[32m+[m[32m        tags: "",[m
+[32m+[m[32m        tags_json: "",[m
+[32m+[m[32m    }]);[m
+     const [isLoading, setisLoading] = useState(false);[m
+     const [error, setError] = useState(null);[m
+[31m-    let [currentState, setCurrentState] = useState([]);[m
+[31m-    function catchError() {[m
+[32m+[m[41m    [m
+[32m+[m[32m    const [newWord, setNewWord] = useState([[m
+[32m+[m[32m        {[m
+[32m+[m[32m            english: "",[m
+[32m+[m[32m            transcription: "",[m
+[32m+[m[32m            russian: "",[m
+[32m+[m[32m            id: uuidv4(),[m
+[32m+[m[32m            tags: "",[m
+[32m+[m[32m            tags_json: "",[m
+[32m+[m[32m        },[m
+[32m+[m[32m    ]);[m
+[32m+[m[32m    const [changeWord, setChangeWord] = useState({english: "",[m
+[32m+[m[32m        transcription: "",[m
+[32m+[m[32m        russian: "",[m
+[32m+[m[32m        id: uuidv4(),[m
+[32m+[m[32m        tags: "",[m
+[32m+[m[32m        tags_json: "",[m
+[32m+[m
+[32m+[m[32m    })[m
+[32m+[m[32m    function getDates() {[m
+[32m+[m[32m        console.log('yep yep yep')[m
+         try {[m
+             setisLoading(true);[m
+             setError(null);[m
+[36m@@ -12,9 +43,7 @@[m [mexport function useFetch(adres = String, ...arg) {[m
+                 .then((res) => res.json())[m
+                 .then((res) => {[m
+                     setCurrentState(res);[m
+[31m-                  [m
+[31m-[m
+[31m-                });[m
+[32m+[m[32m                 });[m
+         } catch {[m
+             setError(error);[m
+             console.error(error);[m
+[36m@@ -23,6 +52,74 @@[m [mexport function useFetch(adres = String, ...arg) {[m
+         }[m
+     }[m
+ [m
+[31m-    return [catchError, isLoading, error, currentState, setCurrentState];[m
+[32m+[m
+[32m+[m[32m    function removeItem (id)  {[m
+[32m+[m[32m        console.log('smth happening 0')[m
+[32m+[m[32m       try {[m
+[32m+[m[32m            fetch(`/api/words/${id}/delete`, {[m
+[32m+[m[32m                method: "POST",[m
+[32m+[m[32m                headers: {[m
+[32m+[m[32m                    "Content-Type": "application/json;charset=utf-8",[m
+[32m+[m[32m                },[m
+[32m+[m[32m                body: JSON.stringify(currentState),[m
+[32m+[m[32m            })[m
+[32m+[m[32m                .then((res) => res.json())[m
+[32m+[m[32m                .then((res) => {[m
+[32m+[m[32m                    setCurrentState((prev) =>[m
+[32m+[m[32m                        prev.filter((item) => item.id !== id)[m
+[32m+[m[32m                    );[m
+[32m+[m[32m                })[m
+[32m+[m[32m        } catch {[m
+[32m+[m[32m            console.error("error");[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    const editWord = (id) => {[m
+[32m+[m[41m       [m
+[32m+[m[32m        try {[m
+[32m+[m[32m            fetch(`/api/words/${id}/update`, {[m
+[32m+[m[32m                method:"PUT",[m
+[32m+[m[32m                headers: {[m
+[32m+[m[32m                    "Content-Type": "application/json;charset=utf-8",[m
+[32m+[m[32m                },[m
+[32m+[m[32m                body: JSON.stringify(changeWord)[m
+[32m+[m[32m            })[m
+[32m+[m[32m            .then((res) => res.json())[m
+[32m+[m[32m            .then((res) =>[m[41m [m
+[32m+[m[32m                setCurrentState((prev) =>[m
+[32m+[m[32m                    prev.map((word) => (word.id === id ? changeWord : word))))[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch{[m
+[32m+[m[32m            console.error('error')[m
+[32m+[m[32m        }[m
+[32m+[m[41m        [m
+[32m+[m[32m    }[m
+[32m+[m[41m  [m
+[32m+[m[32m    const postNewWord = (e) => {[m
+[32m+[m[32m        console.log('smth happening')[m
+[32m+[m[32m        //e.preventDefault();[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            fetch(`/api/words/add`, {[m
+[32m+[m[32m                method: "POST",[m
+[32m+[m[32m                headers: {[m
+[32m+[m[32m                    "Content-Type": "application/json;charset=utf-8",[m
+[32m+[m[32m                },[m
+[32m+[m[32m                body: JSON.stringify(newWord),[m
+[32m+[m[32m            })[m
+[32m+[m[32m                .then((res) => res.json())[m
+[32m+[m[32m                .then((res) => {[m
+[32m+[m[32m                    setCurrentState((prevState) => [...prevState, newWord]);[m
+[32m+[m[32m                });[m
+[32m+[m[32m        } catch {[m
+[32m+[m[32m            console.error("error");[m
+[32m+[m[32m        }[m
+[32m+[m[32m        setNewWord({[m
+[32m+[m[32m            english: "",[m
+[32m+[m[32m            transcription: "",[m
+[32m+[m[32m            russian: "",[m
+[32m+[m[32m        });[m
+[32m+[m[32m    };[m
+[32m+[m[41m    [m
+[32m+[m[32m    return [currentState, setCurrentState, getDates, isLoading, error, removeItem, postNewWord, newWord, setNewWord, editWord,changeWord, setChangeWord];[m
+ }[m
+ [m
+[1mdiff --git a/src/ListTable/row.jsx b/src/ListTable/row.jsx[m
+[1mindex bdd7e93..fd011da 100644[m
+[1m--- a/src/ListTable/row.jsx[m
+[1m+++ b/src/ListTable/row.jsx[m
+[36m@@ -1,6 +1,6 @@[m
+ import Button from "./button.jsx";[m
+ import style from "./table.module.scss";[m
+[31m-import React, { useState, useEffect, useRef, useContext } from "react";[m
+[32m+[m[32mimport React, { useState, useEffect, useRef, useContext, useCallback } from "react";[m
+ import ValidForm from "./validForm.js";[m
+ import { urlImg, urlImg2, urlImg3 } from "../assets/icons.

@@ -1,8 +1,13 @@
-# React + Vite
+Приложение для Запоминания Английских Слов
+Это приложение помогает учить английские слова с помощью карточек и таблицы для управления словарём.
+Основной функционал:
+Карточки: Проверьте, насколько хорошо вы усвоили слово, с помощью карточек. На каждой карточке отображается слово, и пользователь может проверить его значение.
+Таблица слов: Вся ваша коллекция слов представлена в таблице, где вы можете:
+Добавлять новые слова
+Редактировать существующие
+Удалять ненужные слова
+Технологии:
+Vite: Быстрая и простая сборка проекта.
+React: Управление состоянием и компонентами приложения.
+CSS/SCSS: Стилизация интерфейса с использованием как стандартных стилей, так и мощных возможностей SCSS.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
